@@ -18,6 +18,18 @@ after_success:
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
   # push images to docker hub
   - docker push jaab30/multi-client 
-  # - docker push jaab30/multi-nginx 
-  # - docker push jaab30/multi-server 
-  # - docker push jaab30/multi-worker 
+  - docker push jaab30/multi-nginx 
+  - docker push jaab30/multi-server 
+  - docker push jaab30/multi-worker 
+
+  deploy:
+    provider: elasticbeanstalk
+    region: us-east-2
+    app: multi-docker
+    env: Multidocker-env
+    bucket_name: elasticbeanstalk-us-east-2-902288401987
+    bucket_path: docker-multi
+    on:
+      branch: master
+    access_key_id: $AWS_ACCESS_KEY
+    secret_access_key: $AWS_SECRET_KEY
