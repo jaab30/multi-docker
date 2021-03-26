@@ -25,7 +25,7 @@
         },
         {
             "name": "nginx",
-            "image": "jaab30/multiu-nginx",
+            "image": "jaab30/multi-nginx",
             "hostname": "nginx",
             "essential": true,
             "portMappings": [
